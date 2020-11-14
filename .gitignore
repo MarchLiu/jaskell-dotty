@@ -1,0 +1,7 @@
+*.log
+.ensime_cache/**
+.idea/**
+.vscode/**
+.dotty-ide-artifact
+.dotty-ide.json
+.bsp/**
