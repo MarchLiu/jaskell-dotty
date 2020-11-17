@@ -1,6 +1,6 @@
 import sbt.url
 
-val dottyVersion = "0.27.0-RC1"
+val dottyVersion = "3.0.0-M1"
 
 ThisBuild / organization := "io.github.marchliu"
 ThisBuild / organizationName := "Mars Liu"
@@ -38,15 +38,18 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "jaskell-dotty",
-    version := "0.1.0",
+    version := "0.1.2",
 
     scalaVersion := dottyVersion,
 
-    libraryDependencies += "org.scalatest" % "scalatest_0.27" % "3.2.2",
+    libraryDependencies += "org.scalatest" % "scalatest_3.0.0-M1" % "3.2.3",
 
     scalacOptions ++= Seq(
       "-feature",
       "-language:implicitConversions"
-    )
+    ),
+
+    javacOptions ++= Seq("-source", "11", 
+                        "-target", "11"),
   )
 

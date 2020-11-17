@@ -25,4 +25,18 @@ given parsecConfig[E] as Monad[[T] =>> Parsec[E, T]] {
     extension [A, B](x: Parsec[E, A]) {
         def flatMap(f: A => Parsec[E, B]): Parsec[E, B] = new Binder(x, f)
     }
+
+}
+
+given textParserConfig[T] as Monad[[T] =>> Parsec[Char, T]] {
+  def pure[A](x: A): Parsec[Char, A] = new Pack[Char, A](x)
+
+  extension [A, B](x: Parsec[Char, A]) {
+    def flatMap(f: A => Parsec[Char, B]): Parsec[Char, B] = new Binder(x, f)
+  }
+
+  extension [A](x: Parsec[Char, A]) {
+      def apply(content: String): Try[A] = x.apply(content.state)
+      def ?(content: String): Try[A] = x ? content.state
+  }
 }

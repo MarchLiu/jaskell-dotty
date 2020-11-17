@@ -41,4 +41,14 @@ class UIntSpec extends AnyFlatSpec with Matchers {
     assert((parser apply state).isFailure)
 
   }
+
+  "Auto" should "Match digits in string directed" in {
+    val content = "23413a214"
+
+    val parser = uInteger
+
+    val re = parser(content)
+
+    re should be (Success("23413"))
+  }
 }
