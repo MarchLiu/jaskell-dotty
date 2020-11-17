@@ -19,7 +19,7 @@ trait Parsec[A, B] {
     def <|> (p: Parsec[A, B]): Parsec[A, B] = new Combine2(this, p)
 }
 
-given state[E] as Monad[[T] =>> Parsec[E, T]] {
+given parsecConfig[E] as Monad[[T] =>> Parsec[E, T]] {
     def pure[A](x: A): Parsec[E, A] = new Pack[E, A](x)
 
     extension [A, B](x: Parsec[E, A]) {

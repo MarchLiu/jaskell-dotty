@@ -15,7 +15,7 @@ import scala.util.Try
 class Q extends Parsec[Char, Expression] {
   import jaskell.parsec.Combinator.between
   import jaskell.parsec.Txt.{skipWhiteSpaces, ch}
-  import jaskell.parsec.state
+  import jaskell.parsec.parsecConfig
 
   lazy val p = new Parser
   val skips: SkipWhitespaces = skipWhiteSpaces

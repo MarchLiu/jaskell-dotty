@@ -17,7 +17,7 @@ class Param extends Parsec[Char, Expression] {
 
   import jaskell.parsec.Combinator._
   import jaskell.parsec.Txt._
-  import jaskell.parsec.state
+  import jaskell.parsec.parsecConfig
 
   val head: Parsec[Char, Char] = letter
 
