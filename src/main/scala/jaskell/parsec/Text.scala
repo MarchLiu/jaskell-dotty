@@ -8,10 +8,10 @@ import scala.util.{Failure, Success, Try}
  * @author mars
  * @version 1.0.0
  */
-class Text(val text: String, val caseSensitive: Boolean = true) extends Parsec[Char, String] {
+class Text(val text: String, val caseSensitive: Boolean = true) extends Parsec[Char, String]:
   val content: String = if (caseSensitive) text else text.toLowerCase
 
-  def apply(s: State[Char]): Try[String] = {
+  def apply(s: State[Char]): Try[String] = 
     var idx = 0
     val sb: StringBuilder = new StringBuilder
     for(c <- this.text) {
@@ -28,12 +28,7 @@ class Text(val text: String, val caseSensitive: Boolean = true) extends Parsec[C
       }
     }
     Success(sb.toString())
-  }
-}
 
-object Text {
-  def parse(text: String, caseSensitive: Boolean): Text = new Text(text, caseSensitive)
-
-  def parse(text: String): Text = new Text(text, true)
-
-}
+object Text:
+  def apply(text: String, caseSensitive: Boolean): Text = new Text(text, caseSensitive)
+  def apply(text: String): Text = new Text(text, true)

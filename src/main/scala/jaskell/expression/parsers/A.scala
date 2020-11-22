@@ -12,8 +12,7 @@ import scala.util.Try
  * @author mars
  * @version 1.0.0
  */
-class A(val prev: Expression) extends Parsec[Char, Expression] {
-
+class A(val prev: Expression) extends Parsec[Char, Expression]:
   import jaskell.parsec.Txt.ch
   import jaskell.parsec.parsecConfig
   val skips: SkipWhitespaces = skipWhiteSpaces
@@ -27,4 +26,3 @@ class A(val prev: Expression) extends Parsec[Char, Expression] {
       exp <- next ? s
     } yield {new Add(prev, exp)}
   }
-}

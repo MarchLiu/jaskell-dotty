@@ -8,8 +8,7 @@ import scala.util.{Failure, Success, Try}
  * @author Mars Liu
  * @version 1.0.0
  */
-class NoneOf[E](val items: Set[E]) extends Parsec[E, E] {
-
+class NoneOf[E](val items: Set[E]) extends Parsec[E, E]:
   def apply(s: State[E]): Try[E] = {
     s.next() flatMap { re => 
         if (items.contains(re)) {
@@ -19,8 +18,7 @@ class NoneOf[E](val items: Set[E]) extends Parsec[E, E] {
         }
     }
   }
-}
 
-object NoneOf {
+object NoneOf:
   def parse[E](items: Set[E]): NoneOf[E] = new NoneOf(items)
-}
+

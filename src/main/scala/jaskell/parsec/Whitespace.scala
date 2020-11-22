@@ -9,9 +9,8 @@ import scala.util.{Success, Try}
  * @version 1.0.0
  * @since 2020/05/09 17:18
  */
-class Whitespace extends Parsec [Char, Char]{
-
-  def apply(s: State[Char]): Try[Char] = {
+class Whitespace extends Parsec [Char, Char]:
+  def apply(s: State[Char]): Try[Char] =
     s.next() flatMap { c =>
       if(c.isWhitespace){
         Success(c)
@@ -19,9 +18,6 @@ class Whitespace extends Parsec [Char, Char]{
         s.trap(s"expect a whitespace but get $c")
       }
     }
-  }
-}
 
-object Whitespace {
+object Whitespace:
   def apply(): Whitespace = new Whitespace()
-}

@@ -13,8 +13,7 @@ import scala.util.Try
  * @version 1.0.0
  * @since 2020/06/10 14:35
  */
-class Param extends Parsec[Char, Expression] {
-
+class Param extends Parsec[Char, Expression]:
   import jaskell.parsec.Combinator._
   import jaskell.parsec.Txt._
   import jaskell.parsec.parsecConfig
@@ -27,7 +26,7 @@ class Param extends Parsec[Char, Expression] {
       t <- tail ? state
     } yield s"$h$t"
 
-  def apply(s: State[Char]): Try[Expression] = {
+  def apply(s: State[Char]): Try[Expression] = 
     parser ? s map {new Parameter(_)}
-  }
-}
+
+

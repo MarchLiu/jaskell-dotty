@@ -2,15 +2,12 @@ package jaskell
 
 import scala.util.{Try, Success}
 
-trait Applicative[F[_]] extends Functor[F] {
-
-    extension [A, B](fa: F[A=>B]) {
+trait Applicative[F[_]] extends Functor[F]:
+    extension [A, B](fa: F[A=>B]):
         def <*> (fb: F[A]): F[B] = for {
                 f <- fa
                 a <- fb
             } yield f(a)
-
-
         def <|> (fb: F[A=>B]): F[A=>B] = 
             for {
                 a <- fa
@@ -20,34 +17,24 @@ trait Applicative[F[_]] extends Functor[F] {
                                 } catch {
                                     _ => b(arg)
                                 }
-    }
 
-    extension [A, B](x: F[A]) {
-        def *> (bx: F[B]) = {
-            for {
+    extension [A, B](x: F[A]):
+        def *> (bx: F[B]) = for {
                 _ <- x 
                 b <- bx
             } yield b
-        }
 
-        def <* (bx: F[B]) = {
-            for {
+        def <* (bx: F[B]) = for {
                 a <- x
                 _ <- bx
             } yield a
-        }
-    }
 
-    extension [A, B, C](fx: F[(A, B)=>C]) {
-        def liftA2 (ax: F[A], bx: F[B]): F[C] = {
-            for {
+    extension [A, B, C](fx: F[(A, B)=>C]):
+        def liftA2 (ax: F[A], bx: F[B]): F[C] = for {
                 f <- fx
                 a <- ax
                 b <- bx
             } yield f(a, b)
-        }
-    }
-}
 
 given tryApplictive[Arg] as Applicative[[Result] =>> Arg => Try[Result]] {
     def pure[T](arg: T): Arg => Try[T] = x=>Success(arg)

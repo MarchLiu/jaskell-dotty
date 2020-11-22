@@ -10,8 +10,8 @@ import scala.collection.{SortedMap, mutable}
  * @author Mars Liu
  * @version 1.0.0
  */
-class TxtState(val txt: String, val newLine:Char = '\n') extends CommonState[Char](content=txt.toCharArray.toSeq) {
-  val lines: SortedMap[scala.Int, scala.Int] = {
+class TxtState(val txt: String, val newLine:Char = '\n') extends CommonState[Char](content=txt.toCharArray.toSeq):
+  val lines: SortedMap[scala.Int, scala.Int] = 
     val result = new mutable.TreeMap[scala.Int, scala.Int]();
     result.put(0, 0);
     for(index <- Range(0, txt.length)){
@@ -25,8 +25,8 @@ class TxtState(val txt: String, val newLine:Char = '\n') extends CommonState[Cha
       }
     }
     result
-  }
-  def lineByIndex(index: scala.Int): scala.Int = {
+
+  def lineByIndex(index: scala.Int): scala.Int = 
     var i = 0
     for(idx <- lines.keys){
       if(idx <= index && index <= lines(idx)) {
@@ -35,9 +35,6 @@ class TxtState(val txt: String, val newLine:Char = '\n') extends CommonState[Cha
       i += 1
     }
     -1
-  }
-}
 
-object TxtState {
+object TxtState:
   def parse(txt: String, newLine: Char='\n'): TxtState = new TxtState(txt, newLine)
-}

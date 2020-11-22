@@ -7,10 +7,10 @@ package jaskell.expression
  * @version 1.0.0
  * @since 2020/06/02 21:33
  */
-abstract class Binary(var left: Expression, var right: Expression) extends Expression {
+abstract class Binary(var left: Expression, var right: Expression) extends Expression:
   def priority: Int
 
-  override def makeAst: Expression = {
+  override def makeAst: Expression = 
     this.left = this.left.makeAst
     this.right = this.right.makeAst
     right match {
@@ -28,5 +28,3 @@ abstract class Binary(var left: Expression, var right: Expression) extends Expre
         this.right = this.right
         this
     }
-  }
-}

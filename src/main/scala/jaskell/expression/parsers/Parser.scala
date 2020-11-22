@@ -12,8 +12,7 @@ import scala.util.{Failure, Success, Try}
  * @version 1.0.0
  * @since 2020/06/02 21:45
  */
-class Parser extends Parsec[Char, Expression] {
-
+class Parser extends Parsec[Char, Expression]:
   import jaskell.parsec.Txt.{skipWhiteSpaces, ch}
   import jaskell.parsec.Combinator.{ahead}
   import jaskell.parsec.Atom.eof
@@ -32,7 +31,7 @@ class Parser extends Parsec[Char, Expression] {
     }
   }})
 
-  override def apply(s: State[Char]): Try[Expression] = {
+  override def apply(s: State[Char]): Try[Expression] = 
     val np = ((new Num).attempt <|> (new Param).attempt <|> new Q).attempt
 
     np ? s flatMap { left =>
@@ -49,5 +48,4 @@ class Parser extends Parsec[Char, Expression] {
           next ? s
       }
     }
-  }
-}
+

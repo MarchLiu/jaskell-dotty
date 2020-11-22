@@ -2,7 +2,7 @@ package jaskell.parsec
 import scala.util.{Try}
 import scala.language.implicitConversions
 
-class Decimal extends Parsec[Char, String] {
+class Decimal extends Parsec[Char, String]:
   val sign: Parsec[Char, String] = new Attempt(Text("-")) <|> Pack("")
   val udicemal = new UDecimal()
 
@@ -12,4 +12,3 @@ class Decimal extends Parsec[Char, String] {
       num <- udicemal ? st
     } yield s + num
   }
-}

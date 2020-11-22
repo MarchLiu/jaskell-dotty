@@ -10,8 +10,6 @@ trait Parsec[A, B] {
 
     def !(state: State[A]): B = this.apply(state).get
 
-    // def <|> (p: Parsec[A, B]): Parsec[A, B] = Choice(this, p)
-
     def attempt: Parsec[A, B] = new Attempt(this)
 
     def iterate(state: State[A]): Iterator[A, B] = new Iterator(this, state)

@@ -113,7 +113,7 @@ class ExpressionSpec extends AnyFlatSpec with Matchers {
     val content = "5 * (3E-3 + 7) - -22.5e8".state
     val re = p ! content
     val exp = re.makeAst
-    exp.eval(emptyEnv).get should be(2.250000035015E9)
+    exp.eval(emptyEnv) should be(Success(2.250000035015E9))
   }
 
   "Normal Compute" should "compute a normal expression" in {

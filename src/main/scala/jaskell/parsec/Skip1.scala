@@ -9,13 +9,12 @@ import scala.language.implicitConversions
  * @author mars
  * @version 1.0.0
  */
-class Skip1[E](val psc: Parsec[E, _]) extends Parsec[E, Unit] {
+class Skip1[E](val psc: Parsec[E, _]) extends Parsec[E, Unit]:
   val skip = new Skip(psc)
   val parser: Parsec[E, _] = psc *> skip
 
-  def apply(s: State[E]): Try[Unit] = (parser ? s).flatMap(_ => Success(()))
-}
+  def apply(s: State[E]): Try[Unit] = 
+    (parser ? s).flatMap(_ => Success(()))
 
-object Skip1 {
+object Skip1:
   def parse[E](psc: Parsec[E, _]): Skip1[E] = new Skip1[E](psc)
-}

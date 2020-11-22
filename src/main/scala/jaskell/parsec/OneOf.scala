@@ -8,9 +8,8 @@ import scala.util.{Success, Try}
  * @author mars
  * @version 1.0.0
  */
-class OneOf[T](val items:Set[T]) extends Parsec[T, T] {
-
-  def apply(s: State[T]): Try[T] = {
+class OneOf[T](val items:Set[T]) extends Parsec[T, T]:
+  def apply(s: State[T]): Try[T] = 
     s.next() flatMap {v => {
       if(items.contains(v)){
         Success(v)
@@ -18,9 +17,6 @@ class OneOf[T](val items:Set[T]) extends Parsec[T, T] {
         s.trap(s"expect a value in ${items} but get $v")
       }
     }}
-  }
-}
 
-object OneOf {
+object OneOf:
   def parse[T](items: Set[T]): OneOf[T] = new OneOf(items)
-}

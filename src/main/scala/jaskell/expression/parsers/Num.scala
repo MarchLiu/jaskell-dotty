@@ -12,13 +12,11 @@ import scala.util.Try
  * @version 1.0.0
  * @since 2020/06/02 21:41
  */
-class Num extends Parsec[Char, Expression] {
-
+class Num extends Parsec[Char, Expression]:
   import jaskell.parsec.Txt.scNumber
 
   val parser: ScNumber = scNumber
 
-  def apply(s: State[Char]): Try[Expression] = {
+  def apply(s: State[Char]): Try[Expression] = 
     parser ? s map {n => new N(n.toDouble)}
-  }
-}
+

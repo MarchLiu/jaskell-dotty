@@ -6,7 +6,7 @@ package jaskell.parsec
  * @author mars
  * @version 1.0.0
  */
-object Atom {
+object Atom:
   def one[E]: One[E] = new One[E]
 
   def eof[E]: Eof[E] = new Eof[E]
@@ -22,4 +22,3 @@ object Atom {
   def noneOf[E](data: Set[E]): NoneOf[E] = new NoneOf[E](data)
 
   def is[E](predicate: Function[E, Boolean]): Is[E] = new Is(predicate)
-}
