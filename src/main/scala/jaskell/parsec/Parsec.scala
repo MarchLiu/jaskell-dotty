@@ -17,7 +17,7 @@ trait Parsec[A, B] {
     def <|> (p: Parsec[A, B]): Parsec[A, B] = new Combine2(this, p)
 }
 
-given parsecConfig[E] as Monad[[T] =>> Parsec[E, T]] {
+given parsecConfig[E]: Monad[[T] =>> Parsec[E, T]] with {
     def pure[A](x: A): Parsec[E, A] = new Pack[E, A](x)
 
     extension [A, B](x: Parsec[E, A]) {
@@ -26,7 +26,7 @@ given parsecConfig[E] as Monad[[T] =>> Parsec[E, T]] {
 
 }
 
-given textParserConfig[T] as Monad[[T] =>> Parsec[Char, T]] {
+given textParserConfig[T]: Monad[[T] =>> Parsec[Char, T]] with {
   def pure[A](x: A): Parsec[Char, A] = new Pack[Char, A](x)
 
   extension [A, B](x: Parsec[Char, A]) {

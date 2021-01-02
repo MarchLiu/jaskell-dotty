@@ -8,7 +8,7 @@ trait Functor[F[_]]:
     def map(f: A => B): F[B]
     def flatMap(f: A => F[B]): F[B]
 
-given Functor[List]:
+given Functor[List] with
   def pure[A](x: A) = List(x)
   extension [A, B](xs: List[A])
     def map(f: A => B): List[B] =
