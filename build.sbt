@@ -47,9 +47,6 @@ lazy val root = project
     scalacOptions ++= Seq(
       "-feature",
       "-language:implicitConversions"
-    ),
-
-    javacOptions ++= Seq("-source", "11", 
-                        "-target", "11"),
+    )
   )
 
