@@ -21,7 +21,7 @@ trait State[E] {
 
 trait Config {}
 
-given stateConfig as Config {
+given stateConfig: Config with {
     extension [Char](txt: String) 
         def state: TxtState = new TxtState(txt)
 
