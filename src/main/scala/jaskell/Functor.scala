@@ -23,7 +23,7 @@ trait SeqU {}
 
 given seqU: SeqU with {
   extension[T] (seq: Seq[Try[T]])
-    def sequenceU: Try[Seq[T]] = {
+    def flip: Try[Seq[T]] = {
       val failure = seq.filter(_.isFailure)
       if(failure.isEmpty){
         return Success(seq.map(_.get))
