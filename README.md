@@ -1,9 +1,11 @@
-## sbt project compiled with Dotty
+# Jaskell Dotty
 
-### Usage
+Jaskell Dotty is a utils library fork from [https://github.com/MarchLiu/jaskell-core].
 
-This is a normal sbt project, you can compile code with `sbt compile` and run it
-with `sbt run`, `sbt console` will start a Dotty REPL.
+It implemented functor/applicative/monad and parsec combinators in scala 3 (AKA dotty).
 
-For more information on the sbt-dotty plugin, see the
-[dotty-example-project](https://github.com/lampepfl/dotty-example-project/blob/master/README.md).
+Jaskell Dotty project should be next jaskell core for scala 3.
+
+## What's new
+
+ - 0.2.4 add future monad

@@ -1,5 +1,6 @@
 package jaskell
 
+import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
 
 trait Functor[F[_]]:
@@ -32,3 +33,4 @@ given seqU: SeqU with {
       }
     }
 }
+

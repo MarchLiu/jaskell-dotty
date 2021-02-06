@@ -38,7 +38,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "jaskell-dotty",
-    version := "0.2.3",
+    version := "0.2.4",
 
     scalaVersion := dottyVersion,
 

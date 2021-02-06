@@ -10,7 +10,7 @@ import scala.util.Try
  */
 case class EndBy[E, T](val parser: Parsec[E, T], val sep: Parsec[E, _]) extends Parsec[E, Seq[T]] {
   val parsec:Parsec[E, Seq[T]] = new Many(new Parsec[E, T]{
-      def apply(s: State[E]) = { 
+      def apply(s: State[E]) = {
         for {
           re <- parser ? s
           _ <- sep ? s

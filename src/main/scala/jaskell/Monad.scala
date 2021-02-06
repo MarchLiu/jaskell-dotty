@@ -1,11 +1,12 @@
 package jaskell
-import scala.util.{Try, Success, Failure}
+import scala.concurrent.{ExecutionContext, Future}
+import scala.util.{Failure, Success, Try}
 
 trait Monad[F[_]] extends Applicative[F]:
   extension [A, B](x: F[A])
     def >>= (f: A=> F[B]): F[B] = {
       x.flatMap(f)
-    } 
+    }
 
     /** The `map` operation can now be defined in terms of `flatMap` */
     def map(f: A => B): F[B] = x.flatMap(f.andThen(pure))
@@ -30,4 +31,14 @@ given optionMonad: Monad[Option] with
 given tryMonad: Monad[Try] with
   def pure[A](x: A) = Success(x)
   extension [A, B](xt: Try[A])
+      override def map(f: A => B): Try[B] = xt.map(f)
       def flatMap(f: A => Try[B]): Try[B] = xt.flatMap(f)
+
+given futureMonad (using ec:ExecutionContext): Monad[Future] with {
+  def pure[A](x: A): Future[A] = Future.successful(x)
+
+  extension[A, B] (x: Future[A]) {
+    override def map(f: A => B): Future[B] = x.map(f)
+    def flatMap(f: A => Future[B]): Future[B] = x.flatMap(f)
+  }
+}
