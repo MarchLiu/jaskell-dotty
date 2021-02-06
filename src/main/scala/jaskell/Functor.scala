@@ -10,8 +10,12 @@ trait Functor[F[_]]:
 
   /** The unit value for a monad */
     def map(f: A => B): F[B]
-
+    def fmap(f: A => B): F[B] = x.map(f)
+    
     def flatMap(f: A => F[B]): F[B]
+
+    // scala reject the operator <$> , so I use <:> as infix synonym for fmap/map
+    def <:> (f: A=> B): F[B] = x.map(f)
 
 given Functor[List] with
   def pure[A](x: A) = List(x)

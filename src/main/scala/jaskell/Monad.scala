@@ -10,8 +10,8 @@ trait Monad[F[_]] extends Applicative[F]:
 
     /** The `map` operation can now be defined in terms of `flatMap` */
     def map(f: A => B): F[B] = x.flatMap(f.andThen(pure))
-
-    def >> (f: A => B): F[B] = map(f)
+    
+    def >> (y: F[B]): F[B] = x >> y
 
 given listMonad: Monad[List] with
   def pure[A](x: A): List[A] =
