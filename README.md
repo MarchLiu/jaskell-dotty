@@ -8,6 +8,10 @@ It implemented functor/applicative/monad and parsec combinators in scala 3 (AKA 
 
 Jaskell Dotty project should be next jaskell core for scala 3.
 
+Document in [wiki](https://github.com/MarchLiu/jaskell-dotty/wiki) .
+
+There is a demo show how to [write a tiny lisp parser](https://github.com/MarchLiu/sisp-dotty) .
+
 ## Installation
 
 ```xml
