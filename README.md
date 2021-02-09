@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.marchliu/jaskell-dotty_3.0.0-M3.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.marchliu%22%20AND%20a:%22jaskell-dotty_3.0.0-M3%22)
 
-Jaskell Dotty is a utils library fork from [https://github.com/MarchLiu/jaskell-core].
+Jaskell Dotty is a utils library fork from [Jaskell Core](https://github.com/MarchLiu/jaskell-core).
 
 It implemented functor/applicative/monad and parsec combinators in scala 3 (AKA dotty).
 
