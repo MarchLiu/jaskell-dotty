@@ -3,7 +3,13 @@ package jaskell.parsec
 import scala.util.{Try, Success}
 
 case class Pack[E, T](val value: T) extends Parsec[E, T] {
-    def apply(state: State[E]): Try[T] = Success(value)
+  /**
+   * pack is the return operation in haskell 
+   * @param state 
+   * @return create a parser just return the item
+   */
+  def apply(state: State[E]): Try[T] = Success(value)
+  
 }
 
 object Pack {
