@@ -18,11 +18,13 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
 <dependency>
     <groupId>io.github.marchliu</groupId>
     <artifactId>jaskell-dotty_3.0.0-M3</artifactId>
-    <version>0.2.5</version>
+    <version>0.2.6</version>
 </dependency>
 ```
 
 ## What's new
 
- - 0.2.4 add future monad
+ - 0.2.6 upgrade to scala 3.0.0 rc1
  - 0.2.5 add <:> operator as synonym for fmap/map
+ - 0.2.4 add future monad
+ 
