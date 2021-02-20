@@ -17,7 +17,7 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
 ```xml
 <dependency>
     <groupId>io.github.marchliu</groupId>
-    <artifactId>jaskell-dotty_3.0.0-M3</artifactId>
+    <artifactId>jaskell-dotty_3.0.0-RC1</artifactId>
     <version>0.2.6</version>
 </dependency>
 ```

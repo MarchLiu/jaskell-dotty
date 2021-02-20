@@ -41,8 +41,7 @@ lazy val root = project
     version := "0.2.6",
 
     scalaVersion := dottyVersion,
-
-    libraryDependencies += "org.scalatest" % "scalatest_3.0.0-RC1" % "3.2.4",
+    libraryDependencies += "org.scalatest" % s"scalatest_${dottyVersion}" % "3.2.4",
 
     scalacOptions ++= Seq(
       "-feature",
