@@ -1,6 +1,6 @@
 import sbt.url
 
-val dottyVersion = "3.0.0-RC1"
+val dottyVersion = "3.0.0-RC3"
 
 ThisBuild / organization := "io.github.marchliu"
 ThisBuild / organizationName := "Mars Liu"
@@ -41,7 +41,7 @@ lazy val root = project
     version := "0.2.6",
 
     scalaVersion := dottyVersion,
-    libraryDependencies += "org.scalatest" % s"scalatest_${dottyVersion}" % "3.2.4",
+    libraryDependencies += "org.scalatest" % s"scalatest_${dottyVersion}" % "3.2.8",
 
     scalacOptions ++= Seq(
       "-feature",
