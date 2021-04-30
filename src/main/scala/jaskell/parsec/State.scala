@@ -2,7 +2,7 @@ package jaskell.parsec
 
 import scala.util.{Try, Failure}
 
-trait State[E] {
+trait State[+E] {
     type Index
     type Status
     type Tran
@@ -14,9 +14,9 @@ trait State[E] {
     def trap[T](message: String): Failure[T] = {
         Failure(new ParsecException(this.status, message))
     }
-    def pack[T](item: T): Parsec[E, T] = new Pack(item)
+    def pack[T, U >: E](item: T): Parsec[U, T] = new Pack(item)
 
-    def eof: Parsec[E, Unit] = new Eof
+    def eof[U >: E]: Parsec[U, Unit] = new Eof
 }
 
 trait Config {}

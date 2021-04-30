@@ -3,7 +3,7 @@ import scala.util.{Try, Success, Failure}
 import scala.language.implicitConversions
 import jaskell.Monad
 
-trait Parsec[A, B] {
+trait Parsec[A, +B] {
     def apply(state: State[A]): Try[B]
 
     def ?(state: State[A]): Try[B] = this.apply(state)
@@ -12,9 +12,9 @@ trait Parsec[A, B] {
 
     def attempt: Parsec[A, B] = new Attempt(this)
 
-    def iterate(state: State[A]): Iterator[A, B] = new Iterator(this, state)
+    def iterate[R >: B](state: State[A]): Iterator[A, R] = new Iterator(this, state)
 
-    def <|> (p: Parsec[A, B]): Parsec[A, B] = new Combine2(this, p)
+    def <|>[R >: B](p: Parsec[A, R]): Parsec[A, R] = new Combine2(this, p)
 }
 
 given parsecConfig[E]: Monad[[T] =>> Parsec[E, T]] with {
