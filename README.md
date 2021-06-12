@@ -28,3 +28,7 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
  - 0.2.5 add <:> operator as synonym for fmap/map
  - 0.2.4 add future monad
  
+### 0.3.0
+
+ - add skip1 spaces
+ - add skip1 whitespaces
