@@ -1,6 +1,6 @@
 import sbt.url
 
-val dottyVersion = "3.0.1"
+val dottyVersion = "3.0.2"
 
 ThisBuild / organization := "io.github.marchliu"
 ThisBuild / organizationName := "Mars Liu"
@@ -38,7 +38,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "jaskell-dotty",
-    version := "0.3.1",
+    version := "0.4.0",
 
     scalaVersion := dottyVersion,
     libraryDependencies += "org.scalatest" % s"scalatest_3" % "3.2.9",

@@ -2,7 +2,7 @@ package jaskell.parsec
 
 import scala.util.{Try, Success, Failure}
 
-class Attempt[E, T](val parsec: Parsec[E, T]) extends Parsec[E, T]{
+case class Attempt[E, T](parsec: Parsec[E, T]) extends Parsec[E, T]{
     def apply(state: State[E]): Try[T] = {
         val tran = state.begin()
         

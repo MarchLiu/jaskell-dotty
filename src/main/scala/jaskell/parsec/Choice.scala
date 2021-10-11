@@ -10,7 +10,7 @@ import scala.util.{Failure, Success, Try}
  * @author mars
  * @version 1.0.0
  */
-class Choice[E, T](val parsecs: Seq[Parsec[E, T]]) extends Parsec[E, T] {
+case class Choice[E, T](parsecs: Seq[Parsec[E, T]]) extends Parsec[E, T] {
 
   override def apply(s: State[E]): Try[T] = {
     var err: Throwable = null
@@ -32,9 +32,4 @@ class Choice[E, T](val parsecs: Seq[Parsec[E, T]]) extends Parsec[E, T] {
       s.trap(s"Choice Error $err, stop at $status")
     }
   }
-}
-
-object Choice {
-  def apply[E, T](parsecs: Parsec[E, T]*): Choice[E, T] = new Choice(parsecs)
-
 }

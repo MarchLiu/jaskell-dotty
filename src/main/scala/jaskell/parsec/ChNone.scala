@@ -2,7 +2,7 @@ package jaskell.parsec
 
 import scala.util.{Try, Success}
 
-case class ChNone(val content: String, val caseSensitive: Boolean=true) extends Parsec[Char, Char] {
+case class ChNone(content: String, caseSensitive: Boolean=true) extends Parsec[Char, Char] {
   val contentSet: Set[Char] = if (caseSensitive) content.toSet else content.toLowerCase.toSet
 
   def apply(s: State[Char]): Try[Char]  = {

@@ -32,3 +32,8 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
 
  - add skip1 spaces
  - add skip1 whitespaces
+
+### 0.4.0
+
+ - add built in combinators as typeclasses style
+ - bugs fixed

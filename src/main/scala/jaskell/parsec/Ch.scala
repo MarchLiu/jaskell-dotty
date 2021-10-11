@@ -2,7 +2,7 @@ package jaskell.parsec
 
 import scala.util.{Try, Success, Failure}
 
-case class Ch(val char: Char, val caseSensitive: Boolean=true) extends Parsec[Char, Char]:
+case class Ch(char: Char, caseSensitive: Boolean=true) extends Parsec[Char, Char]:
   val chr: Char = if (caseSensitive) char else char.toLower
 
   def apply(s: State[Char]): Try[Char] =

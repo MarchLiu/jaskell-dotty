@@ -1,6 +1,6 @@
 package jaskell.parsec
 
-import jaskell.parsec.Txt.mkString
+import jaskell.parsec.Txt.{mkString, nch}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -46,5 +46,14 @@ class BetweenSpec extends AnyFlatSpec with Matchers {
 
     val re = parser(state)
     re should be(Success("hello"))
+  }
+
+  "BuiltIn" should "test builtin combinators" in {
+    val state = "[hello]".state;
+    val parser = nch(']').many.between(ch('['), ch(']')) >>= mkString
+
+    val re = parser(state)
+    re should be(Success("hello"))
+
   }
 } 

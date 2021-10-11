@@ -8,7 +8,7 @@ import scala.util.Try
  * @author mars
  * @version 1.0.0
  */
-class Ahead[E, T](val parser: Parsec[E, T]) extends Parsec[E, T] {
+case class Ahead[E, T](parser: Parsec[E, T]) extends Parsec[E, T] {
 
   def apply(s: State[E]): Try[T] = {
     val tran = s.begin()
@@ -18,6 +18,3 @@ class Ahead[E, T](val parser: Parsec[E, T]) extends Parsec[E, T] {
   }
 }
 
-object Ahead {
-  def apply[E, T](parser: Parsec[E, T]): Ahead[E, T] = new Ahead[E, T](parser)
-}

@@ -10,7 +10,7 @@ import scala.util.Try
  * @author mars
  * @version 1.0.0
  */
-class Between[E, T](val open: Parsec[E, _], val close: Parsec[E, _], val parsec: Parsec[E, T])
+case class Between[E, T](open: Parsec[E, _], close: Parsec[E, _], parsec: Parsec[E, T])
   extends Parsec[E, T] {
 
   def apply(s: State[E]): Try[T] = {

@@ -10,7 +10,7 @@ import scala.util.{Failure, Success, Try}
  * @author Mars Liu
  * @version 1.0.0
  */
-class Many1[E, T](val parsec: Parsec[E, T]) extends Parsec[E, Seq[T]]:
+case class Many1[E, T](parsec: Parsec[E, T]) extends Parsec[E, Seq[T]]:
   def apply(s: State[E]): Try[Seq[T]] = {
     val re = new mutable.ListBuffer[T]
     parsec ? s match {
@@ -24,6 +24,4 @@ class Many1[E, T](val parsec: Parsec[E, T]) extends Parsec[E, Seq[T]]:
     Success(re.toSeq)
   }
 
-object Many1:
-  def parse[E, T](parsec: Parsec[E, T]): Many1[E, T] = new Many1[E, T](parsec)
 
