@@ -1,6 +1,6 @@
 import sbt.url
 
-val dottyVersion = "3.0.2"
+val dottyVersion = "3.1.0"
 
 ThisBuild / organization := "io.github.marchliu"
 ThisBuild / organizationName := "Mars Liu"
