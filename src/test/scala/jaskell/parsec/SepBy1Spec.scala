@@ -14,6 +14,8 @@ import scala.util.{Success}
  * @since 2020/05/12 21:31
  */
 class SepBy1Spec extends AnyFlatSpec with Matchers {
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Basic" should "Run some basic tests" in {
     val state = "hlhlhlhlhlhll".state
     val p = SepBy1(ch('h'), ch('l'))

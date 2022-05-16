@@ -15,6 +15,9 @@ import scala.util.Success
  * @since 2020/05/12 21:52
  */
 class CommonStateSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
+  
   "Index" should "Test index status" in {
     val data = "It is a \"string\" for this unit test";
     val state = data.state;

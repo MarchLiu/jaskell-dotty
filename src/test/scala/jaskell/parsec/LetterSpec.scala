@@ -13,7 +13,8 @@ import scala.util.Success
  * @since 2020/06/12 18:57
  */
 class LetterSpec extends AnyFlatSpec with Matchers {
-
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   import Txt._
 
   "Letter" should "test a char is letter" in {

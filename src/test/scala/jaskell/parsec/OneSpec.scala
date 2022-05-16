@@ -16,6 +16,8 @@ import scala.util.{Success}
  * @since 2020/05/12 20:48
  */
 class OneSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple" should "Match one item" in {
     val state = "hello".state
     val parser = one[Char]

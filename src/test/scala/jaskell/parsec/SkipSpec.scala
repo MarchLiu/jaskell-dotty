@@ -13,6 +13,8 @@ import jaskell.parsec.Txt.chIn
  * @since 2020/05/12 22:21
  */
 class SkipSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   import Atom.{eqs}
 
   "Once" should "Run match once" in {

@@ -14,7 +14,7 @@ import scala.util.Try
 class D(val prev: Expression) extends Parsec[Char, Expression] {
 
   import jaskell.parsec.Txt.{ch, skipWhiteSpaces}
-  import jaskell.parsec.parsecConfig
+  import jaskell.parsec.Parsec.Instances.{given, *}
 
   val skips: SkipWhitespaces = skipWhiteSpaces
   val op: Parsec[Char, Unit] = skips *> ch('/') *> skips

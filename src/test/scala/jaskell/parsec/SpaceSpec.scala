@@ -14,6 +14,8 @@ import scala.util.{Success}
  * @since 2020/05/12 22:29
  */
 class SpaceSpec extends AnyFlatSpec with Matchers {
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple" should "Run a simple test" in {
     val state = " ".state
     val s = space

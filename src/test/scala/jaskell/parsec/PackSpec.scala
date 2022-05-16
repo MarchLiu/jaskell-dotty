@@ -13,6 +13,8 @@ import scala.util.{Success}
  * @since 2020/05/12 21:18
  */
 class PackSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple" should "Just pack a value" in {
     val state = "Hello World".state
     val returns: Parsec[Char, BigDecimal] = Pack(BigDecimal("3.1415926"))

@@ -14,6 +14,8 @@ import scala.util.{Success}
  * @since 2020/05/12 19:40
  */
 class ManySpec extends AnyFlatSpec with Matchers {
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple" should "Run match 2 times" in {
     val state = "HelloHello".state
     val parser = many(text("hello", caseSensitive = false))

@@ -13,6 +13,8 @@ import scala.util.{Success}
  * @since 2020/05/12 20:10
  */
 class OneOfSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple" should "Just success" in {
     val state = "hello".state;
 

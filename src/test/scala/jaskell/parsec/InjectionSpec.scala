@@ -18,6 +18,8 @@ class InjectionSpec extends AnyFlatSpec with Matchers {
   import jaskell.parsec.Atom.{eof, one}
   import jaskell.parsec.Combinator._
   import jaskell.parsec.Txt._
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
 
   val escapeChar: Parsec[Char, Char] = (ch('\\') *> ((s: State[Char]) => {
     s.next() flatMap {

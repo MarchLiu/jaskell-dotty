@@ -12,6 +12,8 @@ import scala.util.control.Breaks._
  * @version 1.0.0
  */
 class SepEndBy1[E, T](val parser: Parsec[E, T], val sep: Parsec[E, _]) extends Parsec[E, Seq[T]] {
+  import Parsec.Instances.{given, *}
+
   val separator = new Attempt(sep)
   val p: Attempt[E, T] = Attempt(parser)
   val psc: Parsec[E, T] = sep *> parser

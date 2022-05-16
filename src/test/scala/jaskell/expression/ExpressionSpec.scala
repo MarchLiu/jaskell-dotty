@@ -1,12 +1,11 @@
 package jaskell.expression
 
 import jaskell.expression.parsers.{Num, Parser}
-import jaskell.parsec.{State, TxtState}
+import jaskell.parsec.{Parsec, State, TxtState}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 import scala.util.Success
-import jaskell.parsec.stateConfig
 
 /**
  * TODO
@@ -17,7 +16,8 @@ import jaskell.parsec.stateConfig
  */
 class ExpressionSpec extends AnyFlatSpec with Matchers {
   def emptyEnv = new Env
-
+  import jaskell.parsec.State.Instances.{given, *}
+  import jaskell.parsec.Parsec.Instances.{given, *}
   import jaskell.parsec.Txt._
 
   val p = new Parser

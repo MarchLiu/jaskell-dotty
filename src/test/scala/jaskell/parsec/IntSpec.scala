@@ -14,6 +14,8 @@ import org.scalatest.matchers.should.Matchers
 class IntSpec extends AnyFlatSpec with Matchers {
   import Txt.integer
   import scala.util.Success
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
 
   "Simple" should "Run a simple test" in {
     val state = "23413214".state

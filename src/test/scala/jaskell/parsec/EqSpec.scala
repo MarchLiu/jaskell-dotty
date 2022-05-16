@@ -16,6 +16,8 @@ import jaskell.parsec.Atom._
  * @since 2020/05/12 10:02
  */
 class EqSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Eq" should "Test" in {
     val state = "hello".state
 

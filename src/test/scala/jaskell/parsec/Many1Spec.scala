@@ -15,6 +15,8 @@ import scala.util.{Success}
  * @since 2020/05/12 19:22
  */
 class Many1Spec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "One" should "Get first char and return" in {
     val state = "hello".state
     val parser = many1(ch('h'))

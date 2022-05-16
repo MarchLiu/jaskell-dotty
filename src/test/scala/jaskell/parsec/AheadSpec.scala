@@ -16,6 +16,8 @@ class AheadSpec extends AnyFlatSpec with Matchers {
 
   import Txt.{text, space}
   import Combinator.ahead
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
 
   val content: String = "this is a string data."
   "Simple" should "Expect status stop after this" in {

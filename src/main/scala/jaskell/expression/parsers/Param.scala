@@ -16,7 +16,7 @@ import scala.util.Try
 class Param extends Parsec[Char, Expression]:
   import jaskell.parsec.Combinator._
   import jaskell.parsec.Txt._
-  import jaskell.parsec.parsecConfig
+  import jaskell.parsec.Parsec.Instances.{given, *}
 
   val head: Parsec[Char, Char] = letter
 

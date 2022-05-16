@@ -13,6 +13,9 @@ import org.scalatest.matchers.should.Matchers
 class EofSpec extends AnyFlatSpec with Matchers{
   import Txt._
   import Atom.eof
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
+  
   "Eof" should "Test" in {
     val state = "hello".state
 

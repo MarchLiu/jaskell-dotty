@@ -14,6 +14,8 @@ import scala.util.{Success}
  * @since 2020/05/12 19:52
  */
 class NewLineSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "NewLine" should "Test new line" in {
     val state = "\r\n".state
 

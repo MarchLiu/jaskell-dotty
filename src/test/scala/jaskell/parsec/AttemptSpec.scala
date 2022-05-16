@@ -15,7 +15,8 @@ import scala.util.Success
  */
 class AttemptSpec extends AnyFlatSpec with Matchers {
 
-  import jaskell.parsec.stateConfig
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
 
   val data = Seq("Hello", "World")
   "Simple" should "Run a simple test" in {

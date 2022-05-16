@@ -10,6 +10,8 @@ import scala.util.{Failure, Success, Try}
  * @version 1.0.0
  */
 case class SepBy[E, T](val parsec: Parsec[E, T], val by: Parsec[E, _]) extends Parsec[E, Seq[T]] {
+  import Parsec.Instances.{given, *}
+
   val b: Parsec[E, _] = by.attempt
   val p: Parsec[E, T] = parsec.attempt
   val psc: Parsec[E, T] = b *> p

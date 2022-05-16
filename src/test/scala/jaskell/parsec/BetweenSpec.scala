@@ -19,6 +19,8 @@ class BetweenSpec extends AnyFlatSpec with Matchers {
   import Combinator.many
   import Txt.ch
   import Atom.neqs
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
 
   "Simple" should "test basic between case" in {
 

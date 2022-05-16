@@ -21,10 +21,14 @@ trait State[+E] {
 
 trait Config {}
 
-given stateConfig: Config with {
-    extension [Char](txt: String) 
+object State {
+  object Instances {
+    given stateConfig: Config with {
+      extension [Char](txt: String)
         def state: TxtState = new TxtState(txt)
 
-    extension [E](content: Seq[E])
+      extension [E](content: Seq[E])
         def state: CommonState[E] = new CommonState[E](content)
+    }
+  }
 }

@@ -14,6 +14,8 @@ import scala.util.{Success}
  * @since 2020/05/12 19:48
  */
 class ManyTillSpec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple" should "Test a many till match" in {
     val state = "hhhhhhlhhhll".state
 

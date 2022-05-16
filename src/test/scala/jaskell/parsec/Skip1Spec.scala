@@ -16,6 +16,8 @@ import scala.util.{Try, Success}
  * @since 2020/05/12 22:13
  */
 class Skip1Spec extends AnyFlatSpec with Matchers{
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple" should "Just run a simple test" in {
     val state = "left right left right".state
     val parser = skip1(text("left"))

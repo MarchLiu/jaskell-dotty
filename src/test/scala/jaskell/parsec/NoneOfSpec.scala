@@ -13,7 +13,8 @@ import scala.util.{Success}
  * @since 2020/05/12 20:02
  */
 class NoneOfSpec extends AnyFlatSpec with Matchers {
-
+  import State.Instances.{given, *}
+  import Parsec.Instances.{given, *}
   "Simple OK" should "Test success" in {
     val state = "hello".state
     val nof = NoneOf(Seq('k', 'o', 'f').toSet)

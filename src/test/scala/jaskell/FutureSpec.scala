@@ -13,9 +13,10 @@ import scala.concurrent.Future
  * @since 2021/02/06 15:58
  */
 class FutureSpec extends AsyncFlatSpec with Matchers {
-  import jaskell.futureMonad
+  import jaskell.Monad.Instances.{given, *}
+  import jaskell.parsec.Parsec.Instances.{given, *}
 
-  val future = Future("success") *> Future(3.14) <:> {value => value * 2*2} <* Future("Right")
+  val future: Future[Double] = Future("success") *> Future(3.14) <:> { value => value * 2*2} <* Future("Right")
 
   "Pi" should "success a area of r=2 circle" in {
     future.map(value => value should be (3.14 * 2 * 2))
