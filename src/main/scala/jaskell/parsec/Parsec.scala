@@ -1,8 +1,10 @@
 package jaskell.parsec
 
-import scala.util.{Try, Success, Failure}
+import scala.util.{Failure, Success, Try}
 import scala.language.implicitConversions
 import jaskell.Monad
+
+import scala.annotation.targetName
 
 trait Parsec[A, +B] {
   def apply(state: State[A]): Try[B]
@@ -17,6 +19,7 @@ trait Parsec[A, +B] {
 
   def <|>[R >: B](p: Parsec[A, R]): Parsec[A, R] = new Combine2(this, p)
 
+  @targetName("otherwise")
   def `<?>`[C >: B](message: String): Parsec[A, C] = (s: State[A]) => {
     this ? s orElse s.trap(message)
   }

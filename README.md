@@ -37,3 +37,8 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
 
  - add built in combinators as typeclasses style
  - bugs fixed
+
+### 0.5.0
+
+ - uniform given instances
+ - add chars in and may in
