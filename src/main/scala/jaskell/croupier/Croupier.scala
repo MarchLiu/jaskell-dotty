@@ -28,7 +28,7 @@ class Croupier[T](val poker: Poker[T]) {
 
   def randDraw(data: mutable.ListBuffer[T], size: Int): Seq[T] = {
     if (data == null) {
-      Seq()
+      return Seq()
     }
 
     for {
@@ -38,12 +38,12 @@ class Croupier[T](val poker: Poker[T]) {
   }
 
   def randSelect(seq: Seq[T], size: Int): Seq[T] = {
-    randDeal(seq, size)._1
+    randDraw(seq, size)._1
   }
 
   def randSelect(seq: Seq[T]): Option[T] = randIndex(seq).map(seq)
 
-  def randDeal(seq: Seq[T], size: Int): (Seq[T], Seq[T]) = {
+  def randDraw(seq: Seq[T], size: Int): (Seq[T], Seq[T]) = {
     @tailrec
     def helper(data: Seq[T], seq: Seq[T], size: Int): (Seq[T], Seq[T]) = {
       if (size == 0 || seq.isEmpty) {
@@ -87,17 +87,35 @@ object Croupier {
 
   def byWeight[T](scale: Scale[T], seed: Long) = new Croupier[T](new Scaled[T](scale, new Random(seed)))
 
+  def byWeightLite[T](scale: Scale[T]) = new Croupier[T](new LiteScaled[T](scale, new Random()))
+
+  def byWeightLite[T](scale: Scale[T], random: Random) = new Croupier[T](new LiteScaled[T](scale, random))
+
+  def byWeightLite[T](scale: Scale[T], seed: Long) = new Croupier[T](new LiteScaled[T](scale, new Random(seed)))
+
+  def byWeightBinary[T](scale: Scale[T]) = new Croupier[T](new BinaryScaled[T](scale, new Random()))
+
+  def byWeightBinary[T](scale: Scale[T], random: Random) = new Croupier[T](new BinaryScaled[T](scale, random))
+
+  def byWeightBinary[T](scale: Scale[T], seed: Long) = new Croupier[T](new BinaryScaled[T](scale, new Random(seed)))
+
   def byRank[T](ranker: Ranker[T]) = new Croupier[T](new Ranked[T](ranker, new Random()))
 
   def byRank[T](ranker: Ranker[T], random: Random) = new Croupier[T](new Ranked[T](ranker, random))
 
   def byRank[T](ranker: Ranker[T], seed: Long) = new Croupier[T](new Ranked[T](ranker, new Random(seed)))
 
-  def byZipScaler[T](scale: Scale[T]) = new Croupier[T](new ZipScaled[T](scale, new Random()))
+  def byRankBinary[T](ranker: Ranker[T]) = new Croupier[T](new BinaryRanked[T](ranker, new Random()))
 
-  def byZipScaler[T](scale: Scale[T], random: Random) = new Croupier[T](new ZipScaled[T](scale, random))
+  def byRankBinary[T](ranker: Ranker[T], random: Random) = new Croupier[T](new BinaryRanked[T](ranker, random))
 
-  def byZipScaler[T](scale: Scale[T], seed: Long) = new Croupier[T](new ZipScaled[T](scale, new Random(seed)))
+  def byRankBinary[T](ranker: Ranker[T], seed: Long) = new Croupier[T](new BinaryRanked[T](ranker, new Random(seed)))
+
+  def byZipScaled[T](scale: Scale[T]) = new Croupier[T](new ZipScaled[T](scale, new Random()))
+
+  def byZipScaled[T](scale: Scale[T], random: Random) = new Croupier[T](new ZipScaled[T](scale, random))
+
+  def byZipScaled[T](scale: Scale[T], seed: Long) = new Croupier[T](new ZipScaled[T](scale, new Random(seed)))
 }
 
 

@@ -50,3 +50,9 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
 ### 0.6.1
 
  - local return upgrade to returning
+
+### 0.6.2
+
+ - add binary scale
+ - add lite scale
+ - add binary rank
