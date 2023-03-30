@@ -10,7 +10,7 @@ import scala.language.implicitConversions
  * @version 1.0.0
  */
 class EndOfLine extends Parsec[Char, String] {
-  final private val parsec = Text("\n") <|> Text("\r\n")
+  val parsec: Parsec[Char, String] = Text("\n") <|> Text("\r\n")
 
   def apply(s: State[Char]): Try[String] = parsec ? s
 }

@@ -1,6 +1,7 @@
 package jaskell.parsec
 
 import scala.collection.mutable
+import scala.util.control.NonLocalReturns.{returning, throwReturn}
 import scala.util.{Failure, Success, Try}
 
 /**
@@ -16,14 +17,14 @@ case class SepBy1[E, T](parsec: Parsec[E, T], by: Parsec[E, _]) extends Parsec[E
   val p = new Attempt[E, T](parsec)
   val psc: Parsec[E, T] = b *> p
 
-  def apply(s: State[E]): Try[Seq[T]] = {
+  def apply(s: State[E]): Try[Seq[T]] = returning {
     val re = new mutable.ListBuffer[T]
     parsec ? s map { head =>
       re += head
       for (item <- psc iterate s){
         re += item
       }
-      return Success(re.toSeq)
+      throwReturn(Success(re.toSeq))
     }
   }
 }

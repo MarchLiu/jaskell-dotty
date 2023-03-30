@@ -16,6 +16,7 @@ import scala.util.Success
  */
 class ExpressionSpec extends AnyFlatSpec with Matchers {
   def emptyEnv = new Env
+
   import jaskell.parsec.State.Instances.{given, *}
   import jaskell.parsec.Parsec.Instances.{given, *}
   import jaskell.parsec.Txt._
@@ -118,14 +119,18 @@ class ExpressionSpec extends AnyFlatSpec with Matchers {
 
   "Normal Compute" should "compute a normal expression" in {
     val content = "3.14 + 7 * 8 - (2 + 3)".state
-    p ? content flatMap {_.makeAst eval emptyEnv} should be (Success(54.14))
+    p ? content flatMap {
+      _.makeAst eval emptyEnv
+    } should be(Success(54.14))
   }
 
   "Parameters Compute" should "compute a parameters expression" in {
     val env = emptyEnv
     env.put("x", 13)
     val content = "3.14 + 7 * 8 - (2 + x)".state
-    p ? content flatMap {_.makeAst eval env} should be (Success(44.14))
+    p ? content flatMap {
+      _.makeAst eval env
+    } should be(Success(44.14))
   }
 
 }

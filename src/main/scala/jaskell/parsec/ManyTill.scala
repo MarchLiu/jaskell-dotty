@@ -1,8 +1,8 @@
 package jaskell.parsec
 
 import java.io.EOFException
-
 import scala.collection.mutable
+import scala.util.control.NonLocalReturns.*
 import scala.util.{Failure, Success, Try}
 
 /**
@@ -16,21 +16,21 @@ class ManyTill[E, T, L](val parser: Parsec[E, T], val end: Parsec[E, L]) extends
   val psc = new Attempt[E, T](parser)
   val till = new Attempt[E, L](end)
 
-  def apply(s: State[E]): Try[Seq[T]] = {
+  def apply(s: State[E]): Try[Seq[T]] = returning {
     val re = new mutable.ListBuffer[T]
     while (true)  {
       till ? s match {
-        case Success(_) => return Success(re.toSeq)
-        case Failure(error: EOFException) => return Failure(error)
+        case Success(_) => throwReturn(Success(re.toSeq))
+        case Failure(error: EOFException) => throwReturn(Failure(error))
         case Failure(_: ParsecException) =>
           psc ? s match {
             case Success(value) => re += value
-            case Failure(e) => Failure(e)
+            case Failure(e) => throwReturn(Failure(e))
           }
-        case Failure(e) => Failure(e)
+        case Failure(e) => throwReturn(Failure(e))
       }
     }
-    Success(re.toSeq)
+    throwReturn(Success(re.toSeq))
   }
 }
 

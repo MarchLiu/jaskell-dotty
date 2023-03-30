@@ -13,7 +13,7 @@ case class Skip1[E](val psc: Parsec[E, _]) extends Parsec[E, Unit] :
 
   import Parsec.Instances.{given, *}
 
-  val skip = Skip(psc)
+  val skip: Skip[E] = Skip(psc)
   val parser: Parsec[E, _] = psc *> skip
 
   def apply(s: State[E]): Try[Unit] =

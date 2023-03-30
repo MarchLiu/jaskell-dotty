@@ -1,6 +1,6 @@
 *.log
 .ensime_cache/**
-.idea/**
+jaskell/.idea/.name
 .vscode/**
 .dotty-ide-artifact
 .dotty-ide.json

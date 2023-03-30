@@ -29,7 +29,7 @@ object Between {
   }
 
   def apply[E, T](open: Parsec[E, _], close: Parsec[E, _]): (parsec: Parsec[E, T]) => Parsec[E, T] =  {
-    return parser => new Between(open, close, parser)
+    parser => new Between(open, close, parser)
   }
 
   def apply[E, T](open: Parsec[E, _], close: Parsec[E, _], parsec: Parsec[E, T]) =

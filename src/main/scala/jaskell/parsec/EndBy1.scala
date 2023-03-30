@@ -9,13 +9,14 @@ import scala.util.Try
  * @version 1.0.0
  */
 class EndBy1[E, T](val parser: Parsec[E, T], val sep: Parsec[E, _]) extends Parsec[E, Seq[T]] {
-  val parsec: Parsec[E, Seq[T]] = new Many1(new Parsec[E, T] {
-    def apply(s: State[E]) = {
-      for {
-        re <- parser ? s
-        _ <- sep ? s
-      } yield {re}
-    }})
+  val parsec: Parsec[E, Seq[T]] = Many1((s: State[E]) => {
+    for {
+      re <- parser ? s
+      _ <- sep ? s
+    } yield {
+      re
+    }
+  })
   def apply(s: State[E]): Try[Seq[T]] = parsec ? s
 }
 

@@ -9,14 +9,17 @@ import scala.annotation.targetName
 trait Parsec[A, +B] {
   def apply(state: State[A]): Try[B]
 
+  @targetName("parse")
   def ?(state: State[A]): Try[B] = this.apply(state)
 
+  @targetName("must")
   def !(state: State[A]): B = this.apply(state).get
 
-  def attempt: Parsec[A, B] = new Attempt(this)
+  def attempt: Parsec[A, B] = Attempt(this)
 
   def iterate[R >: B](state: State[A]): Iterator[A, R] = new Iterator(this, state)
 
+  @targetName("choice")
   def <|>[R >: B](p: Parsec[A, R]): Parsec[A, R] = new Combine2(this, p)
 
   @targetName("otherwise")

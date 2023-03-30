@@ -18,7 +18,7 @@ trait Functor[F[_]]:
     def <:> (f: A=> B): F[B] = x.map(f)
 
 given Functor[List] with
-  def pure[A](x: A) = List(x)
+  def pure[A](x: A): List[A] = List(x)
   extension[A, B] (xs: List[A])
     def map(f: A => B): List[B] =
       xs.map(f) // List already has a `map` method

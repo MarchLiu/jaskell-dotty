@@ -18,11 +18,11 @@ class CommonState[T](val content: Seq[T]) extends State[T]:
 
   def next(): Try[T] = 
     if (content.size <= current) {
-      return Failure(new EOFException())
+      Failure(new EOFException())
     } else {
       val re = content(current)
       current += 1
-      return Success(re)
+      Success(re)
     }
 
   def status: Status = current

@@ -2,21 +2,17 @@ package jaskell.parsec
 
 import scala.util.{Try, Success, Failure}
 
-class NCh(val char: Char, val caseSensitive: Boolean=true) extends Parsec[Char, Char] {
+class NCh(val char: Char, val caseSensitive: Boolean = true) extends Parsec[Char, Char] {
   val chr: Char = if (caseSensitive) char else char.toLower
 
   def apply(s: State[Char]): Try[Char] = {
     s.next() flatMap { c =>
-      if (caseSensitive) {
-        if (chr != c) {
-          return Success(c)
-        }
-      } else {
-        if (chr != c.toLower) {
-          return Success(c)
-        }
+      caseSensitive match {
+        case true if (chr != c) => Success(c)
+        case false if (chr != c.toLower) => Success(c)
+        case _ =>
+          s.trap(s"expect char $char (case sensitive $caseSensitive) but get $c")
       }
-      s.trap(s"expect char $char (case sensitive $caseSensitive) but get $c")
     }
   }
 }

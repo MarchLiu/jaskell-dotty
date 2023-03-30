@@ -7,12 +7,12 @@ case class Combine2[A, B](val left: Parsec[A, B], val right: Parsec[A, B]) exten
     val status = state.status
     val re = left(state)
     if(re.isSuccess){
-      return re
+      re
     } else {
       if(status == state.status){
-        return right(state)
+        right(state)
       } else {
-        return re
+        re
       }
     }
   }

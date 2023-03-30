@@ -1,8 +1,8 @@
 package jaskell.parsec
 
 import java.io.EOFException
-
 import scala.util.{Failure, Success, Try}
+import scala.util.control.NonLocalReturns.{returning, throwReturn}
 
 /**
  * Choice just the operator <|> in Haskell parsec
@@ -12,17 +12,17 @@ import scala.util.{Failure, Success, Try}
  */
 case class Choice[E, T](parsecs: Seq[Parsec[E, T]]) extends Parsec[E, T] {
 
-  override def apply(s: State[E]): Try[T] = {
+  override def apply(s: State[E]): Try[T] = returning {
     var err: Throwable = null
     val status = s.status
     for (psc <- this.parsecs) {
       psc ? s match {
         case right: Success[T] =>
-          return right
+          throwReturn(right)
         case Failure(error) =>
           err = error
           if (status != s.status) {
-            return Failure(error)
+            throwReturn(Failure(error))
           }
       }
     }

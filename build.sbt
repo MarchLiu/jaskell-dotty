@@ -1,6 +1,6 @@
 import sbt.url
 
-val dottyVersion = "3.1.2"
+val dottyVersion = "3.2.2"
 
 ThisBuild / organization := "io.github.marchliu"
 ThisBuild / organizationName := "Mars Liu"
@@ -33,15 +33,18 @@ ThisBuild / publishTo := {
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 ThisBuild / publishMavenStyle := true
+ThisBuild / versionScheme := Some("early-semver")
 
 lazy val root = project
   .in(file("."))
   .settings(
     name := "jaskell-dotty",
-    version := "0.5.0",
+    version := "0.6.1",
 
     scalaVersion := dottyVersion,
     libraryDependencies += "org.scalatest" % s"scalatest_3" % "3.2.9",
+    publishConfiguration := publishConfiguration.value.withOverwrite(true),
+    publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
 
     scalacOptions ++= Seq(
       "-feature",

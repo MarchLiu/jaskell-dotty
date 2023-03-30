@@ -10,10 +10,10 @@ import scala.util.{Failure, Success, Try}
  * @author mars
  */
 case class Many[E, T](parsec: Parsec[E, T]) extends Parsec[E, Seq[T]]:
-  def apply(s: State[E]): Try[Seq[T]] = 
-    var re = new mutable.ListBuffer[T]
+  def apply(s: State[E]): Try[Seq[T]] =
+    val re = new mutable.ListBuffer[T]
     for(item <- parsec iterate s){
       re append item
     }
-    return Success(re.toSeq)
+    Success(re.toSeq)
 

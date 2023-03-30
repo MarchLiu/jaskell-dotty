@@ -42,3 +42,11 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
 
  - uniform given instances
  - add chars in and may in
+
+### 0.6.0
+
+ - add croupier types for random select
+
+### 0.6.1
+
+ - local return upgrade to returning
