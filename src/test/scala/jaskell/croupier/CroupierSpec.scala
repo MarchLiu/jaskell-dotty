@@ -28,11 +28,11 @@ class CroupierSpec extends AnyFlatSpec with Matchers {
     }
 
     for ((key, value) <- counter) {
-      info(s"fair select $key times ${value}")
+      println(s"fair select $key times ${value}")
     }
   }
 
-  it should "select more elements while more nearer front" in {
+  it should "select more elements while more nearer front use damping" in {
     val counter: mutable.Map[Int, Int] = new mutable.TreeMap[Int, Int]()
     val croupier = Croupier.damping[Int]
     for (_ <- 0 to 100000) {
@@ -42,12 +42,12 @@ class CroupierSpec extends AnyFlatSpec with Matchers {
         counter.put(value, counter.getOrElse(value, 0) + 1)
       }
     }
-    for ((key, value) <- counter) {
-      info(s"damping select $key times ${value}")
+    for (num <- elements) {
+      println(s"damping select $num times ${counter.getOrElse(num, 0)}")
     }
   }
 
-  it should "select more elements while more nearer back" in {
+  it should "select more elements while more nearer back use invert" in {
     val counter: mutable.Map[Int, Int] = new mutable.TreeMap[Int, Int]()
     val croupier = Croupier.invert[Int]
     for (_ <- 0 to 100000) {
@@ -58,12 +58,12 @@ class CroupierSpec extends AnyFlatSpec with Matchers {
       }
     }
 
-    for ((key, value) <- counter) {
-      info(s"invert select $key times ${value}")
+    for (num <- elements) {
+      println(s"invert select $num times ${counter.getOrElse(num, 0)}")
     }
   }
 
-  "Deal" should "draw more while more near front and left rest" in {
+  "Deal" should "draw more while more near front and left rest use damping" in {
     val buffer:Seq[Int] = 0 until 1000
     val croupier = Croupier.damping[Int]
     val counter: mutable.Map[Int, Int] = new mutable.TreeMap[Int, Int]()
@@ -76,8 +76,8 @@ class CroupierSpec extends AnyFlatSpec with Matchers {
       }
     }
 
-    for ((item, count) <- counter) {
-      info(s"$item be draw $count times")
+    for (num <- elements) {
+      println(s"damping select $num times ${counter.getOrElse(num, 0)}")
     }
   }
 

@@ -56,3 +56,8 @@ There is a demo show how to [write a tiny lisp parser](https://github.com/MarchL
  - add binary scale
  - add lite scale
  - add binary rank
+
+### 0.6.3
+
+ - fixed edge condition mistake in damping
+ - make invert smoothness. now it just be a negative damping
